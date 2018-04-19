@@ -18,10 +18,16 @@ class MastodonApi():
         self.mastodon.stream_local(listener)
 
 class Listener(StreamListener):
+    """Mastodonのstreaming apiのListener
+
+    https://github.com/halcy/Mastodon.py/blob/master/mastodon/streaming.py
+    """
 
     def on_update(self, status):
         print(status)
 
+    def on_delete(self, status_id):
+        print("delete: " + str(status_id))
 
 if __name__ == "__main__":
     mastodon = MastodonApi(
